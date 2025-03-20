@@ -1,0 +1,34 @@
+{
+    "name": "zahzah/module-survey",
+    "description": "survey module",
+    "type": "library",
+    "require": {
+        "php": "^7.0|^8.0",
+        "guzzlehttp/guzzle": "^7.8",
+        "http-interop/http-factory-guzzle": "^1.2",
+        "illuminate/support": "^11.26",
+        "symfony/process": "^7.1",
+        "zahzah/laravel-support": "dev-production"
+    },
+    "autoload": {
+        "psr-4": {
+            "Zahzah\\ModuleSurvey\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Zahzah\\ModuleSurvey\\ModuleSurveyServiceProvider"
+            ]
+        }
+    },
+    "authors": [
+        {
+            "name": "Hamzah",
+            "email": "hamzahnuralfalah@gmail.com"
+        }
+    ],
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "prefer-stable": false
+}
