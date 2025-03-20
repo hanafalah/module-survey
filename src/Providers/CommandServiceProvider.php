@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Zahzah\ModuleSurvey\Providers;
+namespace Hanafalah\ModuleSurvey\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Zahzah\ModuleSurvey\Commands as Commands;
+use Hanafalah\ModuleSurvey\Commands as Commands;
 
 class CommandServiceProvider extends ServiceProvider
 {
@@ -13,7 +13,8 @@ class CommandServiceProvider extends ServiceProvider
         Commands\InstallMakeCommand::class
     ];
 
-    public function register(){
+    public function register()
+    {
         $this->commands($this->commands);
     }
 

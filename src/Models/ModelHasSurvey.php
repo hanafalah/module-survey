@@ -1,19 +1,24 @@
 <?php
 
-namespace Zahzah\ModuleSurvey\Models;
+namespace Hanafalah\ModuleSurvey\Models;
 
-use Zahzah\LaravelSupport\Models\PivotBaseModel;
+use Hanafalah\LaravelSupport\Models\PivotBaseModel;
 
-class ModelHasSurvey extends PivotBaseModel{
+class ModelHasSurvey extends PivotBaseModel
+{
     protected $list = [
-        'model_id','model_type','survey_id'
+        'model_id',
+        'model_type',
+        'survey_id'
     ];
 
-    public function survey(){
+    public function survey()
+    {
         return $this->belongsToModel('Survey');
     }
 
-    public function model(){
+    public function model()
+    {
         return $this->morphTo();
     }
 }

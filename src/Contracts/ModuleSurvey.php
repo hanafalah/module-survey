@@ -1,9 +1,7 @@
 <?php
 
-namespace Zahzah\ModuleSurvey\Contracts;
+namespace Hanafalah\ModuleSurvey\Contracts;
 
-use Zahzah\LaravelSupport\Contracts\DataManagement;
+use Hanafalah\LaravelSupport\Contracts\DataManagement;
 
-interface ModuleSurvey extends DataManagement{
-
-}
+interface ModuleSurvey extends DataManagement {}

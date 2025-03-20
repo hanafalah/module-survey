@@ -1,8 +1,9 @@
 <?php
 
-namespace Zahzah\ModuleSurvey\Commands;
+namespace Hanafalah\ModuleSurvey\Commands;
 
-class InstallMakeCommand extends EnvironmentCommand{
+class InstallMakeCommand extends EnvironmentCommand
+{
     /**
      * The name and signature of the console command.
      *
@@ -23,7 +24,7 @@ class InstallMakeCommand extends EnvironmentCommand{
      */
     public function handle()
     {
-        $provider = 'Zahzah\ModuleSurvey\ModuleSurveyServiceProvider';
+        $provider = 'Hanafalah\ModuleSurvey\ModuleSurveyServiceProvider';
 
         $this->callSilent('vendor:publish', [
             '--provider' => $provider,
@@ -35,12 +36,12 @@ class InstallMakeCommand extends EnvironmentCommand{
         $this->callSilent('migrate', [
             '--path' => $migrations
         ]);
-        
+
         $this->callSilent('migrate', [
             '--path' => $migrations
         ]);
         $this->info('✔️  Module master survey tables migrated');
 
-        $this->comment('zahzah/module-survey installed successfully.');
+        $this->comment('hanafalah/module-survey installed successfully.');
     }
 }

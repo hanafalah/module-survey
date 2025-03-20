@@ -1,15 +1,16 @@
 <?php
 
-namespace Zahzah\ModuleSurvey\Models;
+namespace Hanafalah\ModuleSurvey\Models;
 
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Zahzah\LaravelHasProps\Concerns\HasProps;
-use Zahzah\LaravelSupport\Models\BaseModel;
-use Zahzah\ModuleSurvey\Resources\MasterSurvey\ShowMasterSurvey;
-use Zahzah\ModuleSurvey\Resources\MasterSurvey\ViewMasterSurvey;
+use Hanafalah\LaravelHasProps\Concerns\HasProps;
+use Hanafalah\LaravelSupport\Models\BaseModel;
+use Hanafalah\ModuleSurvey\Resources\MasterSurvey\ShowMasterSurvey;
+use Hanafalah\ModuleSurvey\Resources\MasterSurvey\ViewMasterSurvey;
 
-class MasterSurvey extends BaseModel{
+class MasterSurvey extends BaseModel
+{
     use HasUlids, SoftDeletes, HasProps;
 
     const TYPE_INPUT      = 'INPUT';
@@ -27,24 +28,32 @@ class MasterSurvey extends BaseModel{
     protected $keyType    = 'string';
     protected $primaryKey = 'id';
     protected $list = [
-        'id','parent_id','name','flag','props'
+        'id',
+        'parent_id',
+        'name',
+        'flag',
+        'props'
     ];
 
-    public function toViewApi(){
+    public function toViewApi()
+    {
         return new ViewMasterSurvey($this);
     }
 
-    public function toShowApi(){
+    public function toShowApi()
+    {
         return new ShowMasterSurvey($this);
     }
 
-    public function setOptions(array $options){
-        return array_filter($options, function($option) {
+    public function setOptions(array $options)
+    {
+        return array_filter($options, function ($option) {
             return isset($option['label'], $option['value']);
         });
     }
 
-    public function setDynamicForm(array $attributes){
+    public function setDynamicForm(array $attributes)
+    {
         $dynamic_forms   = $this->dynamic_forms ?? [];
         $dynamic_form    = [
             'label'          => $attributes['name'],
@@ -53,35 +62,51 @@ class MasterSurvey extends BaseModel{
             'component_name' => $attributes['component_name'] ?? null,
             'default_value'  => $attributes['default_value'] ?? [],
             'ordering'       => $attributes['ordering'] ?? 1,
-            'attribute'      => $this->getDynamicAttribute($attributes['type'],$attributes['attribute'] ?? null),
+            'attribute'      => $this->getDynamicAttribute($attributes['type'], $attributes['attribute'] ?? null),
             'rule'           => $attributes['rule'] ?? null,
             'options'        => $this->setOptions($attributes['options'] ?? []),
-        ]; 
+        ];
         $dynamic_forms[] = $dynamic_form;
-        $this->setAttribute('dynamic_forms',$dynamic_forms);
+        $this->setAttribute('dynamic_forms', $dynamic_forms);
     }
 
-    public function getDynamicAttribute(string $type,? object $attribute = null){
+    public function getDynamicAttribute(string $type, ?object $attribute = null)
+    {
         if (isset($attribute)) {
             $attribute = (array) $attribute;
             switch ($type) {
-                case self::TYPE_INPUT       : return ['input_type' => $attribute['input_type'] ?? 'text','placeholder'=>$attribute['placeholder'] ?? null,'min'=>$attribute['min'] ?? null,'max'=>$attribute['max'] ?? null,'step'=>$attribute['step'] ?? null];break;
+                case self::TYPE_INPUT:
+                    return ['input_type' => $attribute['input_type'] ?? 'text', 'placeholder' => $attribute['placeholder'] ?? null, 'min' => $attribute['min'] ?? null, 'max' => $attribute['max'] ?? null, 'step' => $attribute['step'] ?? null];
+                    break;
                 // case self::TYPE_TOGGLE      : return null;break;
-                case self::TYPE_TEXTAREA    : return ['rows' => $attribute['rows'] ?? 30,'maxlength' => $attribute['maxlength'] ?? null,'placeholder'=>$attribute['placeholder'] ?? null];break;
+                case self::TYPE_TEXTAREA:
+                    return ['rows' => $attribute['rows'] ?? 30, 'maxlength' => $attribute['maxlength'] ?? null, 'placeholder' => $attribute['placeholder'] ?? null];
+                    break;
                 // case self::TYPE_RADIO       : ;break;
                 // case self::TYPE_CHECKBOX    : ;break;
                 // case self::TYPE_SELECT      : ;break;
-                case self::TYPE_SLIDER      : return ['min' => $attribute['min'] ?? null,'step' => $attribute['step'] ?? null,'max' => $attribute['max'] ?? null];break;
-                case self::TYPE_DATE        : return ['date_type' => $attribute['date_type'] ?? 'daily','format' => $attribute['format'] ?? 'yyyy-MM-dd','min' => $attribute['min'] ?? null,'max' => $attribute['max'] ?? null];break;
-                case self::TYPE_TIME        : return ['format' => $attribute['format'] ?? 'HH:mm','min' => $attribute['min'] ?? null,'max' => $attribute['max'] ?? null];break;
-                case self::TYPE_DATE_TIME   : return ['format' => $attribute['format'] ?? 'yyyy-MM-dd HH:mm','min' => $attribute['min'] ?? null,'max' => $attribute['max'] ?? null];break;
-                case self::TYPE_DATE_RANGE  : return ['format' => $attribute['format'] ?? 'yyyy-MM-dd','min' => $attribute['min'] ?? null,'max' => $attribute['max'] ?? null];break;
+                case self::TYPE_SLIDER:
+                    return ['min' => $attribute['min'] ?? null, 'step' => $attribute['step'] ?? null, 'max' => $attribute['max'] ?? null];
+                    break;
+                case self::TYPE_DATE:
+                    return ['date_type' => $attribute['date_type'] ?? 'daily', 'format' => $attribute['format'] ?? 'yyyy-MM-dd', 'min' => $attribute['min'] ?? null, 'max' => $attribute['max'] ?? null];
+                    break;
+                case self::TYPE_TIME:
+                    return ['format' => $attribute['format'] ?? 'HH:mm', 'min' => $attribute['min'] ?? null, 'max' => $attribute['max'] ?? null];
+                    break;
+                case self::TYPE_DATE_TIME:
+                    return ['format' => $attribute['format'] ?? 'yyyy-MM-dd HH:mm', 'min' => $attribute['min'] ?? null, 'max' => $attribute['max'] ?? null];
+                    break;
+                case self::TYPE_DATE_RANGE:
+                    return ['format' => $attribute['format'] ?? 'yyyy-MM-dd', 'min' => $attribute['min'] ?? null, 'max' => $attribute['max'] ?? null];
+                    break;
             }
         }
         return null;
     }
 
-    public function setDynamicForms(array $attributes){
+    public function setDynamicForms(array $attributes)
+    {
         $order = 1;
         foreach ($attributes as $attribute) {
             $has_ordering = isset($attribute['ordering']);
@@ -92,7 +117,8 @@ class MasterSurvey extends BaseModel{
         }
     }
 
-    public function childs(){
-        return $this->hasMany(get_class($this),static::getParentId())->with('childs');
+    public function childs()
+    {
+        return $this->hasMany(get_class($this), static::getParentId())->with('childs');
     }
 }

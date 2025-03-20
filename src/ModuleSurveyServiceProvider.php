@@ -1,8 +1,8 @@
 <?php
 
-namespace Zahzah\ModuleSurvey;
+namespace Hanafalah\ModuleSurvey;
 
-use Zahzah\LaravelSupport\Providers\BaseServiceProvider;
+use Hanafalah\LaravelSupport\Providers\BaseServiceProvider;
 
 class ModuleSurveyServiceProvider extends BaseServiceProvider
 {
@@ -14,22 +14,24 @@ class ModuleSurveyServiceProvider extends BaseServiceProvider
     public function register()
     {
         $this->registerMainClass(ModuleSurvey::class)
-             ->registerCommandService(Providers\CommandServiceProvider::class)
-             ->registers([
+            ->registerCommandService(Providers\CommandServiceProvider::class)
+            ->registers([
                 '*',
-                'Services'  => function(){
+                'Services'  => function () {
                     $this->binds([
                         Contracts\ModuleSurvey::class  => ModuleSurvey::class,
                     ]);
                 },
-             ]);
+            ]);
     }
 
-    protected function dir(): string{
-        return __DIR__.'/';
+    protected function dir(): string
+    {
+        return __DIR__ . '/';
     }
 
-    protected function migrationPath(string $path = ''): string{
+    protected function migrationPath(string $path = ''): string
+    {
         return database_path($path);
     }
 }

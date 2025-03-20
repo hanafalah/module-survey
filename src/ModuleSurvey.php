@@ -1,9 +1,7 @@
 <?php
 
-namespace Zahzah\ModuleSurvey;
+namespace Hanafalah\ModuleSurvey;
 
-use Zahzah\LaravelSupport\Supports\PackageManagement;
+use Hanafalah\LaravelSupport\Supports\PackageManagement;
 
-class ModuleSurvey extends PackageManagement implements Contracts\ModuleSurvey{
- 
-}
+class ModuleSurvey extends PackageManagement implements Contracts\ModuleSurvey {}

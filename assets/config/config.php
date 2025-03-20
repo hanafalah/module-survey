@@ -1,12 +1,11 @@
 <?php
 
-use Zahzah\ModuleSurvey\{
+use Hanafalah\ModuleSurvey\{
     Models as ModuleSurvey
 };
 
 return [
-    'contracts' => [
-    ],
+    'contracts' => [],
     'database' => [
         'models' => [
             'MasterSurvey'   => ModuleSurvey\MasterSurvey::class,

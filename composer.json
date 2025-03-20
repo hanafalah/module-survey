@@ -1,5 +1,5 @@
 {
-    "name": "zahzah/module-survey",
+    "name": "hanafalah/module-survey",
     "description": "survey module",
     "type": "library",
     "require": {
@@ -8,17 +8,17 @@
         "http-interop/http-factory-guzzle": "^1.2",
         "illuminate/support": "^11.26",
         "symfony/process": "^7.1",
-        "zahzah/laravel-support": "dev-production"
+        "hanafalah/laravel-support": "dev-production"
     },
     "autoload": {
         "psr-4": {
-            "Zahzah\\ModuleSurvey\\": "src/"
+            "Hanafalah\\ModuleSurvey\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Zahzah\\ModuleSurvey\\ModuleSurveyServiceProvider"
+                "Hanafalah\\ModuleSurvey\\ModuleSurveyServiceProvider"
             ]
         }
     },
