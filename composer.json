@@ -8,7 +8,7 @@
         "http-interop/http-factory-guzzle": "^1.2",
         "illuminate/support": "^11.26",
         "symfony/process": "^7.1",
-        "hanafalah/laravel-support": "dev-production"
+        "hanafalah/laravel-support": "1.x"
     },
     "autoload": {
         "psr-4": {
