@@ -5,7 +5,15 @@ use Hanafalah\ModuleSurvey\{
 };
 
 return [
-    'contracts' => [],
+    'app' => [
+        'contracts' => [
+            //ADD YOUR CONTRACTS HERE
+        ],
+    ],
+    'libs' => [
+        'model' => 'Models',
+        'contract' => 'Contracts'
+    ],
     'database' => [
         'models' => [
             'MasterSurvey'   => ModuleSurvey\MasterSurvey::class,
